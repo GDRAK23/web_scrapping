@@ -1,5 +1,3 @@
-#Automação da extração das bases para o case FFM - visão totais
-#Guilherme Augusto Martins
 #Bibliotecas necessárias para a execução, incluindo a Selenium que faz navegação e extração de dados na web
 
 import pandas as pd
@@ -143,25 +141,3 @@ for combination in valid_combinations:
 
     #Concatena os dados
     df= pd.concat([aux,df])
-
-df['Casos'] = df['Casos'].apply(lambda x :x.replace(' ',''))
-
-df['Casos'] = df['Casos'].apply(lambda x :float(x))
-
-later = t.time()
-
-df.to_excel('saida_bars.xlsx')
-
-print("Levou:" + str(round((later-now)/60)))  
-
-df= pd.read_excel('/home/guigo23/Área de Trabalho/saida_bars.xlsx')
-
-continentes=['The Americas','Oceania','Europe','Asia','Africa']
-
-df['continente'] =  df['Região/Continente'].apply(lambda x: 1 if x in continentes else 0)
-
-df_con = df[df.continente==1]
-
-df_con[(df_con['Região/Continente']=='Europe') & (df_con['Região Anatômica']=='Colon')].Casos.hist()
-plt.title("Distribuição na Ásia Câncer de Mama")
-plt.show()
