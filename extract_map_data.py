@@ -1,5 +1,3 @@
-#Automação da extração das bases para o case FFM - visão frações
-#Guilherme Augusto Martins
 #Bibliotecas necessárias para a execução, incluindo a Selenium que faz navegação e extração de dados na web
 
 import pandas as pd
@@ -135,13 +133,6 @@ for combination in valid_combinations:
     #Concatena os dados
     df= pd.concat([aux,df])
 
-pd.to_numeric(df['Casos'].str.rstrip('%'), errors='coerce') / 100 
-
-df.to_excel('saida_map.xlsx')
-
-later = t.time()
-
-print("Levou:" + str(round((later-now)/60)))  
 
 
 
